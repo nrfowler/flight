@@ -4,13 +4,11 @@ import appComponent from './app.component.js'
 
 export default
   angular
-    .module('flight', [
+    .module('flight', ['ngRoute', 'LocalStorageModule',
       'ngAria',
       'ngAnimate',
       'ngMaterial',
       'ngMessages',
-      'ui.router',
-
       flightMap
     ])
     .constant('apiUrl', apiUrl)
