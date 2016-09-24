@@ -1,13 +1,13 @@
-import templateUrl from './login.component.html'
+import templateUrl from './search.component.html'
 
 export default {
   templateUrl,
-  controllerAs: '$login',
+  controllerAs: 'search',
   controller:
     /* @ngInject */
-    class LoginController {
+    class SearchController {
       constructor ($log, $http, $routeParams, $location) {
-        $log.debug('LoginController instantiated');
+        $log.debug('SearchController instantiated');
         var ctrl=this;
         this.UserInfo={username: "", pw: "", content: ""};
 
@@ -20,7 +20,7 @@ export default {
       console.log("User Not Found");
   }) };
 
-        console.log('login.component is running')
+        console.log('search.component is running')
       }
 
 

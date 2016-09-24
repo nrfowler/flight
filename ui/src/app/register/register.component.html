@@ -2,23 +2,23 @@
 	<div class="col-md-10 col-md-offset-1">
 
 		<div class="jumbotron">
-			<h3>Login</h3>
+			<h3>Register</h3>
 		</div>
 
 		<div>
-			<form class="form-horizontal" ng-submit="$login.validate()">
+			<form class="form-horizontal" ng-submit="$register.register()">
 
 				<div class="form-un">
-					<label for="un" class="col-sm-2 control-label">Username: {{$login.UserInfo.username}}</label>
+					<label for="un" class="col-sm-2 control-label">Username: {{$register.UserInfo.username}}</label>
 					<div id="un">
 					<br><br><br>
 						<div class = "jumbotron"  class="col-sm-8">
 Username:
-<input type="text" ng-model="$login.UserInfo.username" class="username" name="username"></input>
+<input type="text" ng-model="$register.UserInfo.username" class="username" name="username"></input>
 <div id="pw">
 	<br><br><br>
 Password:
-<input type="text" ng-model="$login.UserInfo.pw" class="pw" name="pw"></input>
+<input type="text" ng-model="$register.UserInfo.pw" class="pw" name="pw"></input>
 </div>
 					</div>
 				</div>

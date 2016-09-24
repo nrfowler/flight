@@ -1,13 +1,13 @@
-import templateUrl from './login.component.html'
+import templateUrl from './profile.component.html'
 
 export default {
   templateUrl,
-  controllerAs: '$login',
+  controllerAs: 'profile',
   controller:
     /* @ngInject */
-    class LoginController {
+    class ProfileController {
       constructor ($log, $http, $routeParams, $location) {
-        $log.debug('LoginController instantiated');
+        $log.debug('ProfileController instantiated');
         var ctrl=this;
         this.UserInfo={username: "", pw: "", content: ""};
 

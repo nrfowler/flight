@@ -11,15 +11,14 @@ export default {
         var ctrl=this;
         this.UserInfo={username: "", pw: "", content: ""};
 
-        var url ='http://localhost:1234/user/create';
-        this.validate=function(){ return $http.put(url, this.UserInfo).then(function successCallback(response) {
+        var url ='http://localhost:1234/user/register';
+        this.register=function(){ return $http.put(url, this.UserInfo).then(function successCallback(response) {
           console.log("response: " + response.data);
-          ctrl.UserInfo.id=response.data;
-          var temp=JSON.stringify(ctrl.UserInfo);
-          localStorage.setItem('UserInfo', temp);
-          $location.url('home');
+          ctrl.UserInfo=response.data;
+          localStorage.setItem('UserInfo', JSON.stringify(ctrl.UserInfo));
+          $location.url('profile');
       }, function errorCallback(response) {
-      console.log("error");
+      console.log("User Already Exists or Invalid User Credentials");
   }) };
 
         console.log('register.component is running')

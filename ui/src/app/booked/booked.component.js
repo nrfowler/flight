@@ -1,13 +1,13 @@
-import templateUrl from './login.component.html'
+import templateUrl from './booked.component.html'
 
 export default {
   templateUrl,
-  controllerAs: '$login',
+  controllerAs: 'booked',
   controller:
     /* @ngInject */
-    class LoginController {
+    class BookedController {
       constructor ($log, $http, $routeParams, $location) {
-        $log.debug('LoginController instantiated');
+        $log.debug('bookedController instantiated');
         var ctrl=this;
         this.UserInfo={username: "", pw: "", content: ""};
 
@@ -20,7 +20,7 @@ export default {
       console.log("User Not Found");
   }) };
 
-        console.log('login.component is running')
+        console.log('booked.component is running')
       }
 
 

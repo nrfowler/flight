@@ -1,7 +1,7 @@
-import loginApp from './login.component'
+import registerApp from './register.component'
 
 export default
   angular
     .module('flight')
-    .component('loginApp', loginApp)
+    .component('registerApp', registerApp)
     .name
