@@ -12,7 +12,7 @@ export default {
         this.UserInfo={name: "", pw: ""};
 
         var url ='http://localhost:1234/user/register';
-        this.register=function(){ return $http.put(url, this.UserInfo).then(function successCallback(response) {
+        this.register=function(){ return $http.post(url, this.UserInfo).then(function successCallback(response) {
           console.log("response: " + response.data);
           ctrl.UserInfo=response.data;
           localStorage.setItem('UserInfo', JSON.stringify(ctrl.UserInfo));

@@ -29,7 +29,7 @@ public class UserController {
 	public User get(@PathVariable("id") long id) {
 		return userService.get(id);
 	}
-	@CrossOrigin
+	@CrossOrigin(origins = "http://localhost:8080")
 	@RequestMapping(value="/register", method = RequestMethod.POST)
 	public void register(@RequestBody User body){
 		userService.register(body);

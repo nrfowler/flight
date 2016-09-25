@@ -25,9 +25,9 @@ angular.
         }).when('/home', {
 
         	template: '<home-app></home-app>'
-        }).when('/home', {
+        }).when('/profile', {
 
-        	template: '<home-app></home-app>'
+        	template: '<profile-app></profile-app>'
         }).
         when('/register', {
 
