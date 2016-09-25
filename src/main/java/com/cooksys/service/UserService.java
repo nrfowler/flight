@@ -40,6 +40,10 @@ public class UserService {
 		u.setIsLoggedIn(true);
 		repo.save(u);
 	}
-	
+	public void logout(User body) {
+		User u = repo.findByNameAndPw(body.getName(), body.getPw());
+		u.setIsLoggedIn(false);
+		repo.save(u);
+	}	
 
 }

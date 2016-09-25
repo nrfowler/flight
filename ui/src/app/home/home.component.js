@@ -9,7 +9,7 @@ export default {
       constructor ($log, $http, $routeParams, $location) {
         $log.debug('HomeController instantiated');
         var ctrl=this;
-        this.UserInfo={username: "", pw: "", content: ""};
+        this.UserInfo={name: "", pw: ""};
 
         var url ='http://localhost:1234/user/create';
         ctrl.goregister=function(){
