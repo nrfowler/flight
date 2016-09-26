@@ -30,7 +30,7 @@ public class FlightsController {
 	}
 	@RequestMapping("/fromto/{origin}/{dest}")
 	@CrossOrigin(origins = "http://localhost:8080")
-	public ArrayList<Flight> getFilteredFlightList(@PathVariable String origin, @PathVariable String dest)
+	public ArrayList<ArrayList<Flight>> getFilteredFlightList(@PathVariable String origin, @PathVariable String dest)
 	{
 		return flightService.getToFromFlightList(origin, dest);
 	}
