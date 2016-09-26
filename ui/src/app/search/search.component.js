@@ -9,7 +9,7 @@ export default {
       constructor ($log, $http, $routeParams, $location) {
         $log.debug('SearchController instantiated');
         var ctrl=this;
-        this.UserInfo = localStorage.getItem('UserInfo');
+        this.UserInfo = JSON.parse(localStorage.getItem('UserInfo'));
         var url ='http://localhost:1234/flights/fromto/';
         this.search=function(){ return $http.get(url+ctrl.from+'/'+ctrl.to, this.UserInfo).then(function successCallback(response) {
           console.log("response: " + response.data);
@@ -20,9 +20,9 @@ export default {
   }) };
       this.book=function(route){
         ctrl.UserInfo.bookedRoute=route;
+        console.log(ctrl.UserInfo);
         return $http.post('http://localhost:1234/user/book/', this.UserInfo).then(function successCallback(response) {
         console.log("response: " + response.data);
-        console.log('route '+route)
 
     }, function errorCallback(response) {
     console.log("User Not Found");

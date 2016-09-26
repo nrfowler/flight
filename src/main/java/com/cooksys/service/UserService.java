@@ -48,6 +48,13 @@ public class UserService {
 
 	public void book(User body) {
 		User u = repo.findByNameAndPw(body.getName(), body.getPw());
+		u.moveBookedToPast();
+		u.setBookedRoute(body.getBookedRoute());
+		repo.save(u);
+	}
+
+	public void deleteAll() {
+		repo.deleteAll();
 	}	
 
 }

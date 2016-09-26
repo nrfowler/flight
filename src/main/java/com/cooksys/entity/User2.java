@@ -1,6 +1,5 @@
 package com.cooksys.entity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
@@ -12,7 +11,7 @@ import com.cooksys.pojo.Flight;
 
 @Entity
 @Table(name = "User")
-public class User implements Serializable{
+public class User2 {
 	@Id
 	@GeneratedValue
 	private long id;

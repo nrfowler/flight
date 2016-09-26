@@ -2,15 +2,15 @@ import templateUrl from './profile.component.html'
 
 export default {
   templateUrl,
-  controllerAs: 'profile',
+  controllerAs: '$profile',
   controller:
     /* @ngInject */
     class ProfileController {
       constructor ($log, $http, $routeParams, $location) {
         $log.debug('ProfileController instantiated');
         var ctrl=this;
-        this.UserInfo={name: "", pw: "", bookedRoute: {}};
-
+        this.UserInfo=JSON.parse(localStorage.getItem('UserInfo'));
+        console.log(this.UserInfo.name)
         var url ='http://localhost:1234/user/login';
         this.validate=function(){ return $http.put(url, this.UserInfo).then(function successCallback(response) {
           console.log("response: " + response.data);
@@ -20,7 +20,7 @@ export default {
       console.log("User Not Found");
   }) };
 
-        console.log('login.component is running')
+        console.log('profile.component is running')
       }
 
 

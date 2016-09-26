@@ -1,6 +1,8 @@
 package com.cooksys.pojo;
 
-public class Flight {
+import java.io.Serializable;
+
+public class Flight implements Serializable{
 	
 	//Name of city where flight originates
 	private String origin;
@@ -45,6 +47,7 @@ public class Flight {
 		this.flightTime = flightTime;
 		this.offset = offset;
 	}
+	public Flight(){};
 	
 	
 

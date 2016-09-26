@@ -6,11 +6,10 @@ export default {
   controller:
     /* @ngInject */
     class HomeController {
-      constructor ($log, $http, $routeParams, $location) {
+      constructor ($log, $http, $routeParams, $location, localStorageService) {
         $log.debug('HomeController instantiated');
         var ctrl=this;
-        this.UserInfo={name: "", pw: ""};
-        localStorage.clearAll();
+      localStorageService.clearAll();
         var url ='http://localhost:1234/user/create';
         ctrl.goregister=function(){
               $location.url('register')
