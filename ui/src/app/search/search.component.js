@@ -2,7 +2,7 @@ import templateUrl from './search.component.html'
 
 export default {
   templateUrl,
-  controllerAs: 'search',
+  controllerAs: '$search',
   controller:
     /* @ngInject */
     class SearchController {
@@ -11,11 +11,11 @@ export default {
         var ctrl=this;
         this.UserInfo={username: "", pw: "", content: ""};
 
-        var url ='http://localhost:1234/user/login';
-        this.validate=function(){ return $http.put(url, this.UserInfo).then(function successCallback(response) {
+        var url ='http://localhost:1234/flights/fromto/';
+        this.search=function(){ return $http.get(url+ctrl.from+'/'+ctrl.to, this.UserInfo).then(function successCallback(response) {
           console.log("response: " + response.data);
-          localStorage.setItem('UserInfo', JSON.stringify(ctrl.UserInfo));
-          $location.url('profile');
+          ctrl.flights=response.data;
+
       }, function errorCallback(response) {
       console.log("User Not Found");
   }) };

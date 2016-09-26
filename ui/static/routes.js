@@ -10,9 +10,9 @@ angular.
           template: '<flight-app></flight-app>'
 
         }).
-      	when('/user', {
+      	when('/search', {
 
-          template: '<p>hi</hi>'
+          template: '<search-app></search-app>'
 
         }).
         when('/user/:id', {
