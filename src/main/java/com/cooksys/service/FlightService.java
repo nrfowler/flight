@@ -67,7 +67,7 @@ public class FlightService {
 		
 		for(Flight f : startFlights){
 			for(Flight e: endFlights){
-				if(Objects.equals(e.getOrigin(),f.getDestination())){
+				if(Objects.equals(e.getOrigin(),f.getDestination())&&((f.getOffset()+f.getFlightTime()+1)<=e.getOffset())){
 					ArrayList<Flight> temp = new ArrayList<Flight>();
 					temp.add(f);
 					temp.add(e);
@@ -79,7 +79,22 @@ public class FlightService {
 		return possibleRoutes;
 	}
 	
-//	ArrayList<ArrayList<Flight>> possRoutes(ArrayList<Flight> flights){
+	//layovers
+	//routes
+	//getRoute(flight)
+	//if (time> mytime && dest != mydest)
+		//route.add(flight)
+		// getRoute(flight, possflights);
+	//if ( dest==mydest,
+		//routes.add(route)
+	
+	//an arraylist arraylist which is passed recursively to a function, which replaces each route arraylist with new route arraylists (if more valid flights) or deletes it (if no more valid flights to destination)
+	//if lands on dest, then saves arraylist to a arraylist, or just doesn't delete...
+//it will need a ref. to list of all layover flights, either passed in or global. it will run through all of them on each route.
+	//a global save routes would be necessary, to avoid repeat evaluation of routes
+	//My plan: a class which contains "global" data, and a function which calls itself, passing in the data that I need to modify
+	
+	//	ArrayList<ArrayList<Flight>> possRoutes(ArrayList<Flight> flights){
 //		ArrayList<ArrayList<Flight>> possibleRoutes = new ArrayList<ArrayList<Flight>>();
 //		for(Flight f : flights){
 //			flights.remove(f);
@@ -89,7 +104,7 @@ public class FlightService {
 //	}
 	
 	//The fixedDelay parameter determines how often a new day is generated as expressed in milliseconds
-	@Scheduled(fixedDelay=5000)
+	@Scheduled(fixedDelay=1000)
 	private void refreshFlights()
 	{
 		flightList = generator.generateNewFlightList();

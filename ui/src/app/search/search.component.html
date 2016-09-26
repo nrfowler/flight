@@ -29,10 +29,13 @@
 </div>
 
 <div id='searchResults'>
-	<div ng-repeat='flight in $search.flights'>
+	<div ng-repeat='route in $search.routes' class="jumbotron">
+		<div ng-repeat='flight in route'>
 		<div>Origin: {{flight.origin}}</div>
 		<div>Destination: {{flight.destination}}</div>
 <div>Flight Time: {{flight.flightTime}}</div>
+</div>
+<button ng-click='$search.book(route)'>Book </button>
 <br><br>
 	</div>
 </div>

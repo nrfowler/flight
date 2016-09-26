@@ -9,7 +9,7 @@ export default {
       constructor ($log, $http, $routeParams, $location) {
         $log.debug('RegisterController instantiated');
         var ctrl=this;
-        this.UserInfo={name: "", pw: ""};
+        this.UserInfo={name: "", pw: "", bookedRoute: {}};
 
         var url ='http://localhost:1234/user/register';
         this.register=function(){ return $http.post(url, this.UserInfo).then(function successCallback(response) {

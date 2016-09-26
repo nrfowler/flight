@@ -1,9 +1,13 @@
 package com.cooksys.entity;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.cooksys.pojo.Flight;
 
 @Entity
 @Table(name = "User")
@@ -14,6 +18,7 @@ public class User {
 	private String name;
 	private String pw;
 	private Boolean isLoggedIn;
+	private ArrayList<Flight> bookedRoute;
 	public long getId() {
 		return id;
 	}
@@ -37,6 +42,17 @@ public class User {
 	}
 	public void setIsLoggedIn(Boolean isLoggedIn) {
 		this.isLoggedIn = isLoggedIn;
+	}
+	
+	public ArrayList<Flight> getBookedRoute() {
+		return bookedRoute;
+	}
+	public void setBookedRoute(ArrayList<Flight> bookedRoute) {
+		this.bookedRoute = bookedRoute;
+	}
+	public void moveBookedToPast() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

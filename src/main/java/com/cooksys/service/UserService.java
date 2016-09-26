@@ -44,6 +44,10 @@ public class UserService {
 		User u = repo.findByNameAndPw(body.getName(), body.getPw());
 		u.setIsLoggedIn(false);
 		repo.save(u);
+	}
+
+	public void book(User body) {
+		User u = repo.findByNameAndPw(body.getName(), body.getPw());
 	}	
 
 }

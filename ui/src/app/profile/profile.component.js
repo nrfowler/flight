@@ -9,7 +9,7 @@ export default {
       constructor ($log, $http, $routeParams, $location) {
         $log.debug('ProfileController instantiated');
         var ctrl=this;
-        this.UserInfo={username: "", pw: ""};
+        this.UserInfo={name: "", pw: "", bookedRoute: {}};
 
         var url ='http://localhost:1234/user/login';
         this.validate=function(){ return $http.put(url, this.UserInfo).then(function successCallback(response) {

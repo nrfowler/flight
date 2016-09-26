@@ -9,7 +9,7 @@ export default {
       constructor ($log, $http, $routeParams, $location) {
         $log.debug('LoginController instantiated');
         var ctrl=this;
-        this.UserInfo={username: "", pw: "", content: ""};
+        this.UserInfo={name: "", pw: "", content: "", bookedRoute: {}};
 
         var url ='http://localhost:1234/user/login';
         this.validate=function(){ return $http.post(url, this.UserInfo).then(function successCallback(response) {

@@ -10,7 +10,7 @@ export default {
         $log.debug('HomeController instantiated');
         var ctrl=this;
         this.UserInfo={name: "", pw: ""};
-
+        localStorage.clearAll();
         var url ='http://localhost:1234/user/create';
         ctrl.goregister=function(){
               $location.url('register')

@@ -42,5 +42,9 @@ public class UserController {
 	public void logout(@RequestBody User body){
 		userService.logout(body);
 	}
-	
+	@RequestMapping(value="/book", method = RequestMethod.POST)
+	public User book(@RequestBody User body){
+		userService.book(body);
+		return body;
+	}
 }
