@@ -15,9 +15,9 @@ class MapController {
     console.log('map controller is running')
     // add markers from an angular constant
     const { memphis, nashville, knoxville } = locations
-    const markers = [memphis, nashville, knoxville]
+    //const markers = [memphis, nashville, knoxville]
 
-    markers.forEach(marker => this.addMarker(marker))
+    //markers.forEach(marker => this.addMarker(marker))
 
     // add paths manually
     const paths = [
@@ -61,7 +61,7 @@ class MapController {
 console.log(route)
       route.forEach(function(flight){
         ctrl.totalTime+=flight.flightTime
-        
+
         console.log('flight'+flight.origin)
       ctrl.$map.getMarkerByCityName(flight.origin).then(origin => { console.log('dest '+flight.destination)
         ctrl.$map.getMarkerByCityName(flight.destination).then( destination => ctrl.addPath(origin, destination, '#FF3388')

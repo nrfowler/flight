@@ -62,7 +62,7 @@ public class UserService {
 		System.out.println(u.getBookedRoute());
 		u.moveBookedToPast();
 		System.out.println(u.getPrevRoutes());
-
+		
 		u.setBookedRoute(body.getBookedRoute());
 		repo.save(u);
 	}

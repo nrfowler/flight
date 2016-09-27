@@ -27,23 +27,31 @@ public class FlightService {
 	
 	public ArrayList<ArrayList<Flight>> getToFromFlightList(String origin, String dest)
 	{
+		System.out.println("--------------");
+		 printFlightList();
 		ArrayList<Flight> layoverFlights = new ArrayList<Flight>(flightList);
-		ArrayList<Flight> layoverFlights2 = new ArrayList<Flight>(flightList);
 		ArrayList<Flight> endFlights = new ArrayList<Flight>();
 		ArrayList<Flight> startFlights = new ArrayList<Flight>();
 		ArrayList<ArrayList<Flight>> possibleRoutes = new ArrayList<ArrayList<Flight>>();
-		for(Flight f : layoverFlights2){
+		ArrayList<ArrayList<Flight>> startingRoutes = new ArrayList<ArrayList<Flight>>();
+
+		for(Flight f : flightList){
 			if(Objects.equals(f.getOrigin(),origin)){
 				startFlights.add(f);
+				ArrayList<Flight> temp = new ArrayList<Flight>();
+				temp.add(f);
+				startingRoutes.add(temp);
+				layoverFlights.remove(f);
 			}
 			if(Objects.equals(f.getDestination(),dest)){
 				endFlights.add(f);
 			}
+			//if flight is one way to our dest.
 			if(Objects.equals(f.getOrigin(),origin)&&Objects.equals(f.getDestination(),dest)){
 				ArrayList<Flight> temp = new ArrayList<Flight>();
 				temp.add(f);
 				possibleRoutes.add(temp);
-				layoverFlights.remove(f);
+				//layoverFlights.remove(f);
 			}
 			//if the plane is going the opposite direction (loops), remove these from the possible search
 			if(Objects.equals(f.getOrigin(),dest)||Objects.equals(f.getDestination(),origin)){
@@ -54,69 +62,78 @@ public class FlightService {
 			
 			
 		}
-		for(Flight f : layoverFlights){
-			//possflights=layoverflights-f
-			//for possflight in possflights
-				//if possflight starts after f, 
-					//add possflight to possroute
-					//posflights = possflights - possflight
-					//for possflight2 in possflights
-						//possflight2.time > possflight
-						//possflights = possflights - possflight2
-						//for possflight3 in possflights
-					
-		}
-		
-		for(Flight f : startFlights){
-			for(Flight e: endFlights){
-				if(Objects.equals(e.getOrigin(),f.getDestination())&&((f.getOffset()+f.getFlightTime()+1)<=e.getOffset())){
-					ArrayList<Flight> temp = new ArrayList<Flight>();
-					temp.add(f);
-					temp.add(e);
-					possibleRoutes.add(temp);
-				}
-			}
-		}
-		//combine possibleroutes and selFlights
-		Collections.sort(possibleRoutes, new Comparator<ArrayList<Flight>>() {
-	        @Override public int compare(ArrayList<Flight> p1, ArrayList<Flight> p2) {
-	        	long sum1=0, sum2=0;
-	        	for (Flight f : p1){
-	        		sum1+=f.getFlightTime();
-	        	}
-	        	for (Flight f : p2){
-	        		sum2+=f.getFlightTime();
-	        	}
-	            return (int) (sum1-sum2 );
-	        }
-
-	    });
-		return possibleRoutes;
+	
+		System.out.println("New Call");
+		System.out.println("Starting routes outside fn");
+		printRoutes(startingRoutes);
+		System.out.println("Layover flights (other than starting flight) outside fn");
+		printflights(layoverFlights);
+		return recursive(new ArrayList<ArrayList<Flight>>(), layoverFlights, startingRoutes, dest);
+	}
+	Boolean isValidNextFlight(Flight last, Flight next){
+		return(Objects.equals(next.getOrigin(),last.getDestination())&&((last.getOffset()+last.getFlightTime()+1)<=next.getOffset()));
+	}
+	void printFlight (Flight f){
+		System.out.println(f.getOrigin()+" "+f.getDestination());
 	}
 	
-	//layovers
-	//routes
-	//getRoute(flight)
-	//if (time> mytime && dest != mydest)
-		//route.add(flight)
-		// getRoute(flight, possflights);
-	//if ( dest==mydest,
-		//routes.add(route)
+	void printFlightList(){
+		System.out.println("flightList (all flights): ");
+		for (Flight f : this.flightList){
+			printFlight(f);
+		}
+	}
 	
-	//an arraylist arraylist which is passed recursively to a function, which replaces each route arraylist with new route arraylists (if more valid flights) or deletes it (if no more valid flights to destination)
-	//if lands on dest, then saves arraylist to a arraylist, or just doesn't delete...
-//it will need a ref. to list of all layover flights, either passed in or global. it will run through all of them on each route.
-	//a global save routes would be necessary, to avoid repeat evaluation of routes
-	//My plan: a class which contains "global" data, and a function which calls itself, passing in the data that I need to modify
+	void printRoutes(ArrayList<ArrayList<Flight>> routes){
+		for ( ArrayList<Flight> route : routes){
+			System.out.println("Route: "+route.size());
+			printflights(route);
+		}
+	}
 	
-	//	ArrayList<ArrayList<Flight>> possRoutes(ArrayList<Flight> flights){
-//		ArrayList<ArrayList<Flight>> possibleRoutes = new ArrayList<ArrayList<Flight>>();
-//		for(Flight f : flights){
-//			flights.remove(f);
-//			
-//		}
-//		
-//	}
+	void printflights(ArrayList<Flight> flights){
+		for (Flight f : flights){
+			printFlight(f);
+		}
+	}
+	 ArrayList<ArrayList<Flight>> recursive(ArrayList<ArrayList<Flight>> validRoutes, ArrayList<Flight> possibleFlights, ArrayList<ArrayList<Flight>> possibleRoutes, String destination){
+		 ArrayList<ArrayList<Flight>> newPossibleRoutes = new ArrayList<ArrayList<Flight>>();
+		 printFlightList();
+		 System.out.println("List of possible flights (other than starting flight)");
+		 printflights(possibleFlights);
+		 System.out.println("List of starting routes inside fn");
+		 printRoutes(possibleRoutes);
+		 for(ArrayList<Flight> route : possibleRoutes){
+			 //check for one way flights in the possibleRoutes
+			 //System.out.println("last flight of route: ");
+			 //printFlight(route.get(route.size()-1));
+			 if(Objects.equals(route.get(route.size()-1).getDestination(), destination) ){
+				 System.out.println("valid route added");
+				 validRoutes.add(route);
+			 }
+			for(Flight nextFlight : possibleFlights){
+				//printFlight(nextFlight);
+				if(isValidNextFlight(route.get(route.size()-1), nextFlight)){
+				ArrayList<Flight> newRoute = new ArrayList<Flight>(route);
+				newRoute.add(nextFlight);
+				if(Objects.equals(nextFlight.getDestination(),destination)){
+					validRoutes.add(newRoute);
+				}
+				else
+					newPossibleRoutes.add(newRoute);
+				}
+				
+			}
+
+		}
+		 System.out.println("Valid Routes: ");
+		 printRoutes(validRoutes);
+		if(newPossibleRoutes.size()==0)
+			return validRoutes;
+		else
+			return recursive(validRoutes, possibleFlights, newPossibleRoutes, destination);
+	}
+
 	
 	//The fixedDelay parameter determines how often a new day is generated as expressed in milliseconds
 	@Scheduled(fixedDelay=1000)
