@@ -1,0 +1,4 @@
+header{position: fixed; z-index: 99; width: 100%; top: 0; height: 30px; background: grey; color: black}
+a{
+  padding: 0px 50px 0px 50px;
+}

@@ -1,4 +1,5 @@
 
+<navbar-app></navbar-app>
 <head><link rel="stylesheet" type="text/css" href="styles.css"></head>
 <div class='container'>
 <div id='map' map-lazy-load="https://maps.google.com/maps/api/js">
@@ -20,10 +21,13 @@
 </div>
 <div id='sidebar' > <div> Route Information
 	<div> Total Flight Time: {{$mapCtrl.totalTime}} hours</div>
+	<div> Total Layover Time: {{$mapCtrl.layoverTime}} hours</div>
+	<br>
 	<div ng-repeat='flight in $mapCtrl.route'> Flight Description:
 	<div>Origin: {{flight.origin}}</div>
 	<div>Destination: {{flight.destination}}</div>
 	<div>Flight Time: {{flight.flightTime}}</div>
+	<div>Flight Offset: {{flight.offset}}</div>
 	<br>
 	</div>
 </div></div>

@@ -59,9 +59,14 @@ class MapController {
     var ctrl= this;
     ctrl.route=route;
 console.log(route)
-      route.forEach(function(flight){
-        ctrl.totalTime+=flight.flightTime
+    if(route.length==1){
+    }
 
+      route.forEach(function(flight, index, array){
+        ctrl.totalTime+=flight.flightTime
+        if(index!=0){
+          ctrl.layoverTime+=flight.offset -(route[index-1].offset+route[index-1].flightTime)
+        }
         console.log('flight'+flight.origin)
       ctrl.$map.getMarkerByCityName(flight.origin).then(origin => { console.log('dest '+flight.destination)
         ctrl.$map.getMarkerByCityName(flight.destination).then( destination => ctrl.addPath(origin, destination, '#FF3388')

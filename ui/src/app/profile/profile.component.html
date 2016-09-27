@@ -1,3 +1,4 @@
+<navbar-app></navbar-app>
 <div class="container-fluid">
 	<div class="col-md-10 col-md-offset-1">
 
@@ -14,13 +15,14 @@
 		<div>
 			<h2> Previously Booked Itineraries </h2>
 			<div ng-repeat='route in $profile.UserInfo.prevRoutes'>
-				<div ng-repeat='flight in route'> Flight Description: 
+				<div ng-repeat='flight in route'> Flight Description:
 				<div>Origin: {{flight.origin}}</div>
 				<div>Destination: {{flight.destination}}</div>
 				<div>Flight Time: {{flight.flightTime}}</div>
 				</div>
 				<div>
 			<h2> Total Flight Time </h2>
+
 			<h2> Total Layover Time </h2>
 
 
