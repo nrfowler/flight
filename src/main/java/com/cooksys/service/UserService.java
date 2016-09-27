@@ -1,11 +1,13 @@
 package com.cooksys.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cooksys.entity.User;
+import com.cooksys.pojo.Flight;
 import com.cooksys.repository.UserRepository;
 
 @Service
@@ -55,6 +57,11 @@ public class UserService {
 
 	public void deleteAll() {
 		repo.deleteAll();
+	}
+
+	public ArrayList<Flight> getBookedRoute(User u) {
+		return repo.findByNameAndPw(u.getName(), u.getPw()).getBookedRoute();
+		
 	}	
 
 }

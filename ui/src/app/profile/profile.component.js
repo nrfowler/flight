@@ -11,14 +11,14 @@ export default {
         var ctrl=this;
         this.UserInfo=JSON.parse(localStorage.getItem('UserInfo'));
         console.log(this.UserInfo.name)
-        var url ='http://localhost:1234/user/login';
-        this.validate=function(){ return $http.put(url, this.UserInfo).then(function successCallback(response) {
-          console.log("response: " + response.data);
-          localStorage.setItem('UserInfo', JSON.stringify(ctrl.UserInfo));
-          $location.url('profile');
-      }, function errorCallback(response) {
-      console.log("User Not Found");
-  }) };
+        var url ='http://localhost:1234/user/logout';
+        this.logout=function(){
+          return $http.post(url, this.UserInfo).then(function successCallback(response) {
+        }, function errorCallback(response) {
+        console.log("User Not Found");
+    })
+        }
+
 
         console.log('profile.component is running')
       }

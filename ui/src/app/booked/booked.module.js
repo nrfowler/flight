@@ -1,7 +1,10 @@
-import bookedApp from './booked.component.js'
+import bookedLocations from '../booked.locations'
+import bookedComponent from './booked.component.js'
+import bookedService from '../booked.service'
 
 export default
   angular
-    .module('booked')
-    .component('bookedApp', bookedApp)
+    .module('flight.map', ['ngMap'])
+    .component('flightMap', mapComponent)
+    .service('$map', mapService)
     .name

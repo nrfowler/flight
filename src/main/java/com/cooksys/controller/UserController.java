@@ -2,6 +2,7 @@ package com.cooksys.controller;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -61,13 +62,9 @@ public class UserController {
 
 		 userService.book(u);
 	}
-	@RequestMapping(value="/book2", method = RequestMethod.POST)
-	public void book2(@RequestBody String body) {
-		ObjectMapper mapper = new ObjectMapper();
-		JAXBContext jaxbContext = JAXBContext.newInstance(User.class, Flight.class);
-		Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-		StringReader reader = new StringReader(body);
-		User u = (User)unmarshaller.unmarshal(reader);
-		 userService.book(u);
+	@RequestMapping(value="/booked", method = RequestMethod.POST)
+	public ArrayList<Flight> booked(@RequestBody User u) {
+		 return userService.getBookedRoute(u);
 	}
+
 }

@@ -20,6 +20,7 @@ public class User implements Serializable{
 	private String pw;
 	private Boolean isLoggedIn;
 	private ArrayList<Flight> bookedRoute;
+	//private ArrayList<ArrayList<Flight>> prevRoutes;
 	public long getId() {
 		return id;
 	}

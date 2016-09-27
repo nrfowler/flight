@@ -23,7 +23,7 @@ export default {
         console.log(ctrl.UserInfo);
         return $http.post('http://localhost:1234/user/book/', this.UserInfo).then(function successCallback(response) {
         console.log("response: " + response.data);
-
+        $location.url('/booked')
     }, function errorCallback(response) {
     console.log("User Not Found");
 })

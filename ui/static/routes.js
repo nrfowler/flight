@@ -32,6 +32,9 @@ angular.
         when('/register', {
 
         	template: '<register-app></register-app>'
+        }).when('/booked', {
+
+        	template: '<flight-map></flight-map>'
         }).
         when('/createtweet', {
 

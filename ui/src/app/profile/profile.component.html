@@ -6,9 +6,11 @@
 		</div>
 <div>Username: {{$profile.UserInfo.name}}</div>
 <div>Current City: </div>
-<button> Log out </button>
-<a> View Currently Booked Flight </a>
-<a href='/search'> Search for Flights </div>
+<a href='/#/booked' ng-click='$profile.logout()'> Log out </a>
+<br>
+<a href='/#/booked'> View Currently Booked Flight </a>
+<br>
+<a href='/#/search'> Search for Flights </a>
 		<div>
 			<h2> Previously Booked Itineraries </h2>
 			<h2> Total Flight Time </h2>

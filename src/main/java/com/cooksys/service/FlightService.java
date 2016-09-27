@@ -1,6 +1,8 @@
 package com.cooksys.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +78,19 @@ public class FlightService {
 			}
 		}
 		//combine possibleroutes and selFlights
+		Collections.sort(possibleRoutes, new Comparator<ArrayList<Flight>>() {
+	        @Override public int compare(ArrayList<Flight> p1, ArrayList<Flight> p2) {
+	        	long sum1=0, sum2=0;
+	        	for (Flight f : p1){
+	        		sum1+=f.getFlightTime();
+	        	}
+	        	for (Flight f : p2){
+	        		sum2+=f.getFlightTime();
+	        	}
+	            return (int) (sum1-sum2 );
+	        }
+
+	    });
 		return possibleRoutes;
 	}
 	

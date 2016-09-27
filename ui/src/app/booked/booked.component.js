@@ -1,28 +1,56 @@
 import templateUrl from './booked.component.html'
 
+/* @ngInject */
+class MapController {
+  zoom = 7
+  center = [35.5175, -86.5804]
+  markers = []
+  paths = []
+
+  constructor ($map, locations) {
+    this.$map = $map
+
+    // add markers from an angular constant
+    const { memphis, nashville, knoxville } = locations
+    const markers = [memphis, nashville, knoxville]
+
+    markers.forEach(marker => this.addMarker(marker))
+
+    // add paths manually
+    const paths = [
+      [memphis, nashville, '#CC0099'],
+      [nashville, knoxville, '#AA1100']
+    ]
+
+    paths.forEach(args => this.addPath(...args))
+
+    // add path from webservice
+    $map.getMarkerByCityName('Chattanooga')
+      .then(chattanooga => {
+        this.addPath(knoxville, chattanooga, '#FF3388')
+      })
+  }
+
+  addMarker ({ latitude, longitude }) {
+    this.markers.push({
+      position: `[${latitude}, ${longitude}]`
+    })
+  }
+
+  addPath (a, b, color) {
+    this.paths.push({
+      path: `[[${a.latitude}, ${a.longitude}], [${b.latitude}, ${b.longitude}]]`,
+      strokeColor: color,
+      strokeOpacity: 1.0,
+      strokeWeight: 3,
+      geodesic: true
+    })
+  }
+
+}
+
 export default {
   templateUrl,
-  controllerAs: 'booked',
-  controller:
-    /* @ngInject */
-    class BookedController {
-      constructor ($log, $http, $routeParams, $location) {
-        $log.debug('bookedController instantiated');
-        var ctrl=this;
-        this.UserInfo={name: "", pw: "", content: ""};
-
-        var url ='http://localhost:1234/user/login';
-        this.validate=function(){ return $http.put(url, this.UserInfo).then(function successCallback(response) {
-          console.log("response: " + response.data);
-          localStorage.setItem('UserInfo', JSON.stringify(ctrl.UserInfo));
-          $location.url('profile');
-      }, function errorCallback(response) {
-      console.log("User Not Found");
-  }) };
-
-        console.log('booked.component is running')
-      }
-
-
-    }
+  controller: MapController,
+  controllerAs: '$mapCtrl'
 }

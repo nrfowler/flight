@@ -9,7 +9,7 @@ class MapController {
 
   constructor ($map, locations) {
     this.$map = $map
-
+    console.log('map controller is running')
     // add markers from an angular constant
     const { memphis, nashville, knoxville } = locations
     const markers = [memphis, nashville, knoxville]
@@ -22,13 +22,18 @@ class MapController {
       [nashville, knoxville, '#AA1100']
     ]
 
-    paths.forEach(args => this.addPath(...args))
+    //paths.forEach(args => this.addPath(...args))
 
     // add path from webservice
-    $map.getMarkerByCityName('Chattanooga')
-      .then(chattanooga => {
-        this.addPath(knoxville, chattanooga, '#FF3388')
-      })
+    //$map.getMarkerByCityName('Chattanooga')
+    //  .then(chattanooga => {
+    //    this.addPath(knoxville, chattanooga, '#FF3388')
+    //  })
+      this.UserInfo = JSON.parse(localStorage.getItem('UserInfo'))
+      console.log(this.UserInfo)
+      var ctrl=this
+      $map.getRouteByNameAndPw(this.UserInfo).then(route => ctrl.addRoute(route))
+
   }
 
   addMarker ({ latitude, longitude }) {
@@ -45,6 +50,19 @@ class MapController {
       strokeWeight: 3,
       geodesic: true
     })
+  }
+  //color will be easy, use index of foreach and enum
+  addRoute(route){
+    var ctrl= this;
+
+
+      route.forEach(function(flight){console.log('flight'+flight.origin)
+      ctrl.$map.getMarkerByCityName(flight.origin).then(origin => { console.log('dest '+flight.destination)
+        ctrl.$map.getMarkerByCityName(flight.destination).then( destination => ctrl.addPath(origin, destination, '#FF3388')
+      )})})
+      console.log(route)
+
+
   }
 
 }
