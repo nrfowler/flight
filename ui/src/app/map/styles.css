@@ -1,0 +1,13 @@
+#sidebar{
+  float: right;
+}
+
+#map{
+  width: 75%;
+  float: left;
+}
+
+.container {
+  display: flex; /* or inline-flex */
+  flex-direction: column;
+}

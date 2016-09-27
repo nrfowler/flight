@@ -6,6 +6,9 @@ class MapController {
   center = [35.5175, -86.5804]
   markers = []
   paths = []
+  route = []
+  totalTime = 0
+  layoverTime = 0
 
   constructor ($map, locations) {
     this.$map = $map
@@ -54,9 +57,12 @@ class MapController {
   //color will be easy, use index of foreach and enum
   addRoute(route){
     var ctrl= this;
-
-
-      route.forEach(function(flight){console.log('flight'+flight.origin)
+    ctrl.route=route;
+console.log(route)
+      route.forEach(function(flight){
+        ctrl.totalTime+=flight.flightTime
+        
+        console.log('flight'+flight.origin)
       ctrl.$map.getMarkerByCityName(flight.origin).then(origin => { console.log('dest '+flight.destination)
         ctrl.$map.getMarkerByCityName(flight.destination).then( destination => ctrl.addPath(origin, destination, '#FF3388')
       )})})

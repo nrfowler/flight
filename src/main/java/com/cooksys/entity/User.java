@@ -2,6 +2,7 @@ package com.cooksys.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +21,7 @@ public class User implements Serializable{
 	private String pw;
 	private Boolean isLoggedIn;
 	private ArrayList<Flight> bookedRoute;
-	//private ArrayList<ArrayList<Flight>> prevRoutes;
+	private ArrayList<ArrayList<Flight>> prevRoutes= new ArrayList<ArrayList<Flight>>();
 	public long getId() {
 		return id;
 	}
@@ -53,8 +54,14 @@ public class User implements Serializable{
 		this.bookedRoute = bookedRoute;
 	}
 	public void moveBookedToPast() {
-		// TODO Auto-generated method stub
-		
+prevRoutes.add(bookedRoute);
+prevRoutes.removeAll(Collections.singleton(null));
+	}
+	public ArrayList<ArrayList<Flight>> getPrevRoutes() {
+		return prevRoutes;
+	}
+	public void setPrevRoutes(ArrayList<ArrayList<Flight>> prevRoutes) {
+		this.prevRoutes = prevRoutes;
 	}
 	
 }

@@ -11,6 +11,7 @@ export default {
         var ctrl=this;
         this.UserInfo=JSON.parse(localStorage.getItem('UserInfo'));
         console.log(this.UserInfo.name)
+        $http.get('http://localhost:1234/user/'+ctrl.UserInfo.id).then(response=>ctrl.UserInfo=response.data)
         var url ='http://localhost:1234/user/logout';
         this.logout=function(){
           return $http.post(url, this.UserInfo).then(function successCallback(response) {

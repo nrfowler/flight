@@ -14,6 +14,7 @@ export default {
         var url ='http://localhost:1234/user/login';
         this.validate=function(){ return $http.post(url, this.UserInfo).then(function successCallback(response) {
           console.log("response: " + response.data);
+          ctrl.UserInfo.id=response.data;
           localStorage.setItem('UserInfo', JSON.stringify(ctrl.UserInfo));
           $location.url('profile');
       }, function errorCallback(response) {

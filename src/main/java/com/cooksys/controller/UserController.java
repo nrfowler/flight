@@ -46,12 +46,12 @@ public class UserController {
 	}
 	@CrossOrigin(origins = "http://localhost:8080")
 	@RequestMapping(value="/register", method = RequestMethod.POST)
-	public void register(@RequestBody User body){
-		 userService.register(body);
+	public long register(@RequestBody User body){
+		 return userService.register(body);
 	}
 	@RequestMapping(value="/login", method = RequestMethod.POST)
-	public void login(@RequestBody User body){
-		userService.login(body);
+	public long login(@RequestBody User body){
+		return userService.login(body);
 	}
 	@RequestMapping(value="/logout", method = RequestMethod.POST)
 	public void logout(@RequestBody User body){

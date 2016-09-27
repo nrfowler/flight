@@ -24,20 +24,29 @@ public class UserService {
 		return repo.findById(id);
 	}
 
-	public Boolean register(User body) {
+	public long register(User body) {
 		User temp=repo.findByNameAndPw(body.getName(), body.getPw());
 		if(temp==null){
+			body.setIsLoggedIn(true);
 			repo.save(body);
-			return true;
+			temp=repo.findByNameAndPw(body.getName(), body.getPw());
+			return temp.getId();
 		}
 		else{
-			return false;
+			return 0;
 		}
 		
 
 	}
 
-	public void login(User body) {
+	public long login(User body) {
+		User u = repo.findByNameAndPw(body.getName(), body.getPw());
+		u.setIsLoggedIn(true);
+		repo.save(u);
+		return u.getId();
+	}
+	
+	public void get(User body) {
 		User u = repo.findByNameAndPw(body.getName(), body.getPw());
 		u.setIsLoggedIn(true);
 		repo.save(u);
@@ -50,7 +59,10 @@ public class UserService {
 
 	public void book(User body) {
 		User u = repo.findByNameAndPw(body.getName(), body.getPw());
+		System.out.println(u.getBookedRoute());
 		u.moveBookedToPast();
+		System.out.println(u.getPrevRoutes());
+
 		u.setBookedRoute(body.getBookedRoute());
 		repo.save(u);
 	}
