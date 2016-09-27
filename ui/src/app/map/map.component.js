@@ -9,6 +9,7 @@ class MapController {
   route = []
   totalTime = 0
   layoverTime = 0
+  colors = ['#AA1100','#CC0099', '#00ff00', '#087fa1']
 
   constructor ($map, locations) {
     this.$map = $map
@@ -45,10 +46,10 @@ class MapController {
     })
   }
 
-  addPath (a, b, color) {
+  addPath (a, b) {
     this.paths.push({
       path: `[[${a.latitude}, ${a.longitude}], [${b.latitude}, ${b.longitude}]]`,
-      strokeColor: color,
+      strokeColor: this.colors[this.paths.length],
       strokeOpacity: 1.0,
       strokeWeight: 3,
       geodesic: true
