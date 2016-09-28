@@ -13,6 +13,12 @@ class MapController {
 
   constructor ($map, locations) {
     this.$map = $map
+    var ctrl=this
+    this.Marker={}
+    ctrl.$map.getMarkerByCityName("Memphis").then(a=>ctrl.Marker["Memphis"]=a)
+    ctrl.$map.getMarkerByCityName("Chattanooga").then(a=>ctrl.Marker["Chattanooga"]=a)
+    ctrl.$map.getMarkerByCityName("Knoxville").then(a=>ctrl.Marker["Knoxville"]=a)
+    ctrl.$map.getMarkerByCityName("Nashville").then(a=>ctrl.Marker["Nashville"]=a)
     console.log('map controller is running')
     this.Trip = JSON.parse(localStorage.getItem('Trip'))
     // add markers from an angular constant
@@ -21,7 +27,6 @@ class MapController {
     //const markers = [memphis, nashville, knoxville]
 
     //markers.forEach(marker => this.addMarker(marker))
-
     // add paths manually
     const paths = [
       [memphis, nashville, '#CC0099'],
@@ -37,7 +42,6 @@ class MapController {
     //  })
       this.UserInfo = JSON.parse(localStorage.getItem('UserInfo'))
       console.log(this.UserInfo)
-      var ctrl=this
       $map.getRouteByNameAndPw(this.UserInfo).then(route => ctrl.addRoute(route))
 
   }
@@ -65,16 +69,21 @@ console.log(route)
     if(route.length==1){
     }
 
+
       route.forEach(function(flight, index, array){
         ctrl.totalTime+=flight.flightTime
         if(index!=0){
           ctrl.layoverTime+=flight.offset -(route[index-1].offset+route[index-1].flightTime)
           ctrl.layoversExist=true
         }
-        console.log('flight'+flight.origin)
-      ctrl.$map.getMarkerByCityName(flight.origin).then(origin => { console.log('origin '+origin)
-        ctrl.$map.getMarkerByCityName(flight.destination).then( destination => ctrl.addPath(origin, destination)
-      )})})
+        console.log('flight origin: '+flight.origin)
+
+        ctrl.addPath(ctrl.Marker[flight.origin],ctrl.Marker[flight.destination])
+      //ctrl.$map.getMarkerByCityName(flight.origin).then(origin => { console.log('origin '+flight.origin)
+      //  ctrl.$map.getMarkerByCityName(flight.destination).then( destination => ctrl.addPath(origin, destination)
+      //)})
+
+    })
       console.log(this.paths)
 
 
