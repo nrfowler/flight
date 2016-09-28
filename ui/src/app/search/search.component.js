@@ -41,6 +41,7 @@ export default {
         console.log(ctrl.UserInfo);
         return $http.post('http://localhost:1234/user/book/', this.UserInfo).then(function successCallback(response) {
         console.log("Trip: " + response.data.route[0].origin);
+        ctrl.Trip=response.data;
         localStorage.setItem('Trip', JSON.stringify(response.data));
         $location.url('/booked')
     }, function errorCallback(response) {

@@ -31,9 +31,11 @@
 	<div>Flight Offset: {{flight.offset}}</div>
 	<br>
 	</div>
+	<div ng-show='$mapCtrl.layoversExist' >  
 <h2> Layovers </h2>
 	<div ng-repeat='layover in $mapCtrl.Trip.layovers'> Layover in {{layover.city}} for {{layover.time}} hours
 
+	</div>
 	</div>
 
 </div></div>

@@ -1,8 +1,10 @@
 package com.cooksys.pojo;
 
+import java.io.Serializable;
+
 import com.cooksys.entity.Location;
 
-public class Layover {
+public class Layover implements Serializable{
 	private String city;
 	private long time;
 	public String getCity() {

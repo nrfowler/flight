@@ -60,7 +60,7 @@ public class UserService {
 
 	public Trip book(User body) {
 		User u = repo.findByNameAndPw(body.getName(), body.getPw());
-		System.out.println(u.getBookedRoute());
+		System.out.println(body.getBookedRoute());
 		u.moveBookedToPast();
 		System.out.println(u.getPrevRoutes());
 		

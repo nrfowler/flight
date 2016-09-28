@@ -9,13 +9,14 @@ class MapController {
   route = []
   totalTime = 0
   layoverTime = 0
-  colors = ['#AA1100','#CC0099', '#00ff00', '#087fa1']
+  colors = ['#AA1100','#CC0099', '#00ff00', '#087fa1','#AA1100','#CC0099', '#00ff00', '#087fa1']
 
   constructor ($map, locations) {
     this.$map = $map
     console.log('map controller is running')
     this.Trip = JSON.parse(localStorage.getItem('Trip'))
     // add markers from an angular constant
+    this.layoversExist=false
     const { memphis, nashville, knoxville } = locations
     //const markers = [memphis, nashville, knoxville]
 
@@ -68,12 +69,13 @@ console.log(route)
         ctrl.totalTime+=flight.flightTime
         if(index!=0){
           ctrl.layoverTime+=flight.offset -(route[index-1].offset+route[index-1].flightTime)
+          ctrl.layoversExist=true
         }
         console.log('flight'+flight.origin)
-      ctrl.$map.getMarkerByCityName(flight.origin).then(origin => { console.log('dest '+flight.destination)
-        ctrl.$map.getMarkerByCityName(flight.destination).then( destination => ctrl.addPath(origin, destination, '#FF3388')
+      ctrl.$map.getMarkerByCityName(flight.origin).then(origin => { console.log('origin '+origin)
+        ctrl.$map.getMarkerByCityName(flight.destination).then( destination => ctrl.addPath(origin, destination)
       )})})
-      console.log(route)
+      console.log(this.paths)
 
 
   }

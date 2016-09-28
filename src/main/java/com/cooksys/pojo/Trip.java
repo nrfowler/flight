@@ -6,8 +6,8 @@ import java.util.ArrayList;
 public class Trip implements Serializable{
 	private ArrayList<Layover> layovers;
 	private ArrayList<Flight> route;
-	private long totalLayoverTime=0;
-	private long totalFlightTime=0;
+	private long totalLayoverTime;
+	private long totalFlightTime;
 	public void computeLayovers(){
 		if(route.size()==1){
 			return;
@@ -40,6 +40,31 @@ public class Trip implements Serializable{
 		super();
 		this.layovers = layovers;
 		this.route = route;
+		this.totalFlightTime=0;
+				this.totalLayoverTime=0;
 	}
-	public Trip(){};
+	public Trip(){
+		this.totalFlightTime=0;
+		this.totalLayoverTime=0;
+	}
+	public long getTotalLayoverTime() {
+		return totalLayoverTime;
+	}
+	public void setTotalLayoverTime(long totalLayoverTime) {
+		this.totalLayoverTime = totalLayoverTime;
+	}
+	public long getTotalFlightTime() {
+		return totalFlightTime;
+	}
+	public void setTotalFlightTime(long totalFlightTime) {
+		this.totalFlightTime = totalFlightTime;
+	}
+	public Trip(ArrayList<Layover> layovers, ArrayList<Flight> route, long totalLayoverTime, long totalFlightTime) {
+		super();
+		this.layovers = layovers;
+		this.route = route;
+		this.totalLayoverTime = totalLayoverTime;
+		this.totalFlightTime = totalFlightTime;
+	};
+	
 }

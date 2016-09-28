@@ -9,20 +9,20 @@
 
 		<div>
 			<h2> Previously Booked Itineraries </h2>
-			<div ng-repeat='route in $profile.UserInfo.prevRoutes'>
-				<div ng-repeat='flight in route'> Flight Description:
+			<div ng-repeat='trip in $profile.UserInfo.prevTrips'>
+				<div ng-repeat='flight in trip.route'> Flight Description:
 				<div>Origin: {{flight.origin}}</div>
 				<div>Destination: {{flight.destination}}</div>
 				<div>Flight Time: {{flight.flightTime}}</div>
 				</div>
-				<div>
-			<h5> Total Flight Time </h2>
 
-			<h5> Total Layover Time </h2>
+			<h5> Total Flight Time: {{trip.totalFlightTime}} </h2>
 
-
+			<h5> Total Layover Time: {{trip.totalLayoverTime}}</h2>
 
 
 
-	</div>
+
+
+
 </div>
