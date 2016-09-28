@@ -19,12 +19,12 @@ public class FlightService {
 	FlightGenerator generator;
 
 	private ArrayList<Flight> flightList = new ArrayList<>();
-	
+
 	public ArrayList<Flight> getDailyFlightList()
 	{
 		return flightList;
 	}
-	
+
 	public ArrayList<ArrayList<Flight>> getToFromFlightList(String origin, String dest)
 	{
 		ArrayList<Flight> layoverFlights = new ArrayList<Flight>(flightList);
@@ -49,21 +49,21 @@ public class FlightService {
 	void printFlight (Flight f){
 		System.out.println(f.getOrigin()+" "+f.getDestination());
 	}
-	
+
 	void printFlightList(){
 		System.out.println("flightList (all flights): ");
 		for (Flight f : this.flightList){
 			printFlight(f);
 		}
 	}
-	
+
 	void printRoutes(ArrayList<ArrayList<Flight>> routes){
 		for ( ArrayList<Flight> route : routes){
 			System.out.println("Route: "+route.size());
 			printflights(route);
 		}
 	}
-	
+
 	void printflights(ArrayList<Flight> flights){
 		for (Flight f : flights){
 			printFlight(f);
@@ -94,24 +94,24 @@ public class FlightService {
 			return recursive(validRoutes, possibleFlights, newPossibleRoutes, destination);
 	}
 
-	
+
 	//The fixedDelay parameter determines how often a new day is generated as expressed in milliseconds
 	@Scheduled(fixedDelay=1000)
 	private void refreshFlights()
 	{
 		//flightList = generator.generateNewFlightList();
 		flightList = new ArrayList<Flight>();
-		flightList.add(new Flight("CHATTANOOGA", "NASHVILLE", 2, 0));
-		flightList.add(new Flight("NASHVILLE","CHATTANOOGA", 1, 0));
-		flightList.add(new Flight("NASHVILLE","MEMPHIS", 1, 0));
-		flightList.add(new Flight("MEMPHIS","KNOXVILLE", 1, 3));
-		flightList.add(new Flight("KNOXVILLE","CHATTANOOGA", 1, 5));
-		flightList.add(new Flight("KNOXVILLE","CHATTANOOGA", 1, 6));
-		flightList.add(new Flight("KNOXVILLE","CHATTANOOGA", 1, 3));
+		flightList.add(new Flight("Chattanooga", "Nashville", 2, 0));
+		flightList.add(new Flight("Nashville","Chattanooga", 1, 0));
+		flightList.add(new Flight("Nashville","Memphis", 1, 0));
+		flightList.add(new Flight("Memphis","Knoxville", 1, 3));
+		flightList.add(new Flight("Knoxville","Chattanooga", 1, 5));
+		flightList.add(new Flight("Knoxville","Chattanooga", 1, 6));
+		flightList.add(new Flight("Knoxville","Chattanooga", 1, 3));
 
 
 
 
 	}
-	
+
 }

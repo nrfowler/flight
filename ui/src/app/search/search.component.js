@@ -9,8 +9,8 @@ export default {
       constructor ($log, $http, $routeParams, $location) {
         $log.debug('SearchController instantiated');
         var ctrl=this;
-        this.from="NASHVILLE";
-        this.to="CHATTANOOGA";
+        this.from="Nashville";
+        this.to="Chattanooga";
         console.log(document.getElementsByTagName('a'))
         ctrl.searchMessage="Please Enter a Search Query"
         this.UserInfo = JSON.parse(localStorage.getItem('UserInfo'));
@@ -34,6 +34,7 @@ export default {
             ctrl.query();
 
               ctrl.timer=setInterval(function(){ctrl.query()},3000)
+              //$watch($location.absUrl(),function(){clearInterval(ctrl.timer)})
             }
 
       this.book=function(route){
