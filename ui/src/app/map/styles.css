@@ -1,1 +1,12 @@
-header{position: fixed; z-index: 99; width: 100%; top: 0; height: 30px; background: black; color: white}
+#sidebar{
+  float: left;
+  display: inline-block;
+
+}
+
+#map{
+  width: 75%;
+  float: left;
+  display: inline-block;
+
+}
