@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.cooksys.entity.User;
 import com.cooksys.pojo.Flight;
+import com.cooksys.pojo.Trip;
 import com.cooksys.repository.UserRepository;
 
 @Service
@@ -57,7 +58,7 @@ public class UserService {
 		repo.save(u);
 	}
 
-	public void book(User body) {
+	public Trip book(User body) {
 		User u = repo.findByNameAndPw(body.getName(), body.getPw());
 		System.out.println(u.getBookedRoute());
 		u.moveBookedToPast();
@@ -65,6 +66,11 @@ public class UserService {
 		
 		u.setBookedRoute(body.getBookedRoute());
 		repo.save(u);
+		Trip trip = new Trip();
+		trip.setRoute(body.getBookedRoute());
+		trip.computeLayovers();
+
+		return trip;
 	}
 
 	public void deleteAll() {

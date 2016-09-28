@@ -6,12 +6,7 @@
 			<h1>My Profile</h3>
 		</div>
 <div>Username: {{$profile.UserInfo.name}}</div>
-<div>Current City: </div>
-<a href='/#/home' ng-click='$profile.logout()'> Log out </a>
-<br>
-<a href='/#/booked'> View Currently Booked Flight </a>
-<br>
-<a href='/#/search'> Search for Flights </a>
+
 		<div>
 			<h2> Previously Booked Itineraries </h2>
 			<div ng-repeat='route in $profile.UserInfo.prevRoutes'>
@@ -21,9 +16,9 @@
 				<div>Flight Time: {{flight.flightTime}}</div>
 				</div>
 				<div>
-			<h2> Total Flight Time </h2>
+			<h5> Total Flight Time </h2>
 
-			<h2> Total Layover Time </h2>
+			<h5> Total Layover Time </h2>
 
 
 

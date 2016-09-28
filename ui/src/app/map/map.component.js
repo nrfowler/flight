@@ -14,6 +14,7 @@ class MapController {
   constructor ($map, locations) {
     this.$map = $map
     console.log('map controller is running')
+    this.Trip = JSON.parse(localStorage.getItem('Trip'))
     // add markers from an angular constant
     const { memphis, nashville, knoxville } = locations
     //const markers = [memphis, nashville, knoxville]

@@ -18,7 +18,7 @@
 	  </shape>
 </ng-map>
 </div>
-<div id='sidebar' > <div> Route Information
+<div id='sidebar' > <div> <h2>Route Information</h2>
 	<div> Total Flight Time: {{$mapCtrl.totalTime}} hours</div>
 	<div> Total Layover Time: {{$mapCtrl.layoverTime}} hours</div>
 	<br>
@@ -31,5 +31,10 @@
 	<div>Flight Offset: {{flight.offset}}</div>
 	<br>
 	</div>
+<h2> Layovers </h2>
+	<div ng-repeat='layover in $mapCtrl.Trip.layovers'> Layover in {{layover.city}} for {{layover.time}} hours
+
+	</div>
+
 </div></div>
 </div>

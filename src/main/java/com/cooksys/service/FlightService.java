@@ -99,14 +99,15 @@ public class FlightService {
 	@Scheduled(fixedDelay=1000)
 	private void refreshFlights()
 	{
-		flightList = generator.generateNewFlightList();
-//		flightList.add(new Flight("CHATTANOOGA", "NASHVILLE", 2, 0));
-//		flightList.add(new Flight("NASHVILLE","CHATTANOOGA", 1, 0));
-//		flightList.add(new Flight("NASHVILLE","MEMPHIS", 1, 0));
-//		flightList.add(new Flight("MEMPHIS","KNOXVILLE", 1, 3));
-//		flightList.add(new Flight("KNOXVILLE","CHATTANOOGA", 1, 5));
-//		flightList.add(new Flight("KNOXVILLE","CHATTANOOGA", 1, 6));
-//		flightList.add(new Flight("KNOXVILLE","CHATTANOOGA", 1, 3));
+		//flightList = generator.generateNewFlightList();
+		flightList = new ArrayList<Flight>();
+		flightList.add(new Flight("CHATTANOOGA", "NASHVILLE", 2, 0));
+		flightList.add(new Flight("NASHVILLE","CHATTANOOGA", 1, 0));
+		flightList.add(new Flight("NASHVILLE","MEMPHIS", 1, 0));
+		flightList.add(new Flight("MEMPHIS","KNOXVILLE", 1, 3));
+		flightList.add(new Flight("KNOXVILLE","CHATTANOOGA", 1, 5));
+		flightList.add(new Flight("KNOXVILLE","CHATTANOOGA", 1, 6));
+		flightList.add(new Flight("KNOXVILLE","CHATTANOOGA", 1, 3));
 
 
 

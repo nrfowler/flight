@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cooksys.entity.User;
 import com.cooksys.pojo.Flight;
+import com.cooksys.pojo.Trip;
 import com.cooksys.service.UserService;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -58,9 +59,9 @@ public class UserController {
 		userService.logout(body);
 	}
 	@RequestMapping(value="/book", method = RequestMethod.POST)
-	public void book(@RequestBody User u) {
+	public Trip book(@RequestBody User u) {
 
-		 userService.book(u);
+		 return userService.book(u);
 	}
 	@RequestMapping(value="/booked", method = RequestMethod.POST)
 	public ArrayList<Flight> booked(@RequestBody User u) {
