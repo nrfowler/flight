@@ -9,4 +9,5 @@ Development Environment: Atom, Eclipse
 
 
 TODO: Component Libraries for better UI
-      Package.json should reflect dependencies in angular
+
+   Package.json should reflect dependencies in angular
